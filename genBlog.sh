@@ -1,6 +1,7 @@
-TERM=ansi   #bug-fix for tidy to work
+TERM=ansi
 blog(){
-    cat index-header.html > indexUnformatted.html
+    cd blog
+    cat ../index-header.html > indexUnformatted.html
     for year in $(ls [0-9][0-9][0-9][0-9] -dr); do
         year=$(basename $year)
         for month in $(ls $year/[0-9][0-9] -dr); do
@@ -13,18 +14,19 @@ blog(){
             done
         done
     done
-    cat index-footer.html >> indexUnformatted.html
+    cat ../index-footer.html >> indexUnformatted.html
+    cd -
 }
 backup(){
     if [[ -e $1 ]]; then
         backupExt=$(date +"%H-%M-%S=%d-%m-%Y")
-        mkdir -p $(dirname "backup/$1")
-        mv "$1" "backup/$1.$backupExt"
+        mkdir -p $(dirname "blog/backup/$1")
+        mv "$1" "blog/backup/$1.$backupExt"
     fi
 }
 
 backup "index.html"
 blog
 
-tidy -indent --indent-spaces 4 --tidy-mark no -quiet indexUnformatted.html > index.html
-rm indexUnformatted.html
+tidy -indent --indent-spaces 4 --tidy-mark no -quiet blog/indexUnformatted.html > blog/index.html
+rm blog/indexUnformatted.html
