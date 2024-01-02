@@ -13,7 +13,7 @@ blog(){
             for day in $(ls blog/$year/$month/[0-9][0-9].html -r); do
                 day=$(basename $day)
                 title="$(echo $day | sed 's/.html//')-$month-$year"
-                notes="$(cat $year/$month/$day)"
+                notes="$(cat blog/$year/$month/$day)"
                 echo "<div class=\"day\"><h3>$title</h3><div class=blog>$notes</div></div>" >> indexUnformatted.html
             done
         done
@@ -35,5 +35,4 @@ blog
 git checkout gh-pages
 backupIndex
 mv -f indexNew.html index.html
-rm indexNew.html
 git commmit -a || echo "Could'nt Commmit"  && git checkout main
