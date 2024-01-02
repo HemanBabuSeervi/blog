@@ -32,7 +32,7 @@ backupIndex(){
 
 blog
 
-git checkout gh-pages
+git checkout gh-pages || { echo -e "\033[31mCould'nt checkout gh-pages\033[0m" && exit 1; }
 backupIndex
 mv -f indexNew.html index.html
 git commit -a || echo "Could'nt Commmit"  && git checkout main
