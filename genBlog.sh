@@ -22,7 +22,7 @@ blog(){
     tidy -indent --indent-spaces 4 --tidy-mark no -quiet indexUnformatted.html > indexNew.html
     rm indexUnformatted.html
 }
-backup(){
+backupIndex(){
     if [[ -e index.html ]]; then
         mkdir -p .backup
         timestamp=$(date +"%H-%M-%S=%d-%m-%Y")
