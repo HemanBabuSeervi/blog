@@ -1,5 +1,6 @@
 TERM=ansi
 blog(){
+    mkdir -p blog
     cd blog
     cat ../index-header.html > indexUnformatted.html
     for year in $(ls [0-9][0-9][0-9][0-9] -dr); do
@@ -27,6 +28,11 @@ backup(){
 
 backup "index.html"
 blog
+
+git checkout gh-pages
+cp blog/* .
+git commit -a
+git checkout main
 
 tidy -indent --indent-spaces 4 --tidy-mark no -quiet blog/indexUnformatted.html > blog/index.html
 rm blog/indexUnformatted.html
