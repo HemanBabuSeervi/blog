@@ -35,4 +35,4 @@ blog
 git checkout gh-pages
 backupIndex
 mv -f indexNew.html index.html
-git commmit -a || echo "Could'nt Commmit"  && git checkout main
+git commit -a || echo "Could'nt Commmit"  && git checkout main
